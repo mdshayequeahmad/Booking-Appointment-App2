@@ -10,9 +10,20 @@ class Appointment {
 //
 class UI {
   static displayLists() {
-    const lists = Store.getLists();
+    axios.get('https://crudcrud.com/api/aa15c3d1c3a843aa8c29b4f65549ed70/abooking')
+         .then((response) => {
+            console.log(response);
+            for (var i=0; i<response.data.length; i++) {
+              UI.addAppToList(response.data[i]);
+            }
+         })
+         .catch((err) => {
+            console.log(err);
+         })
 
-    lists.forEach((list) => UI.addAppToList(list));
+    // const lists = Store.getLists();
+
+    // lists.forEach((list) => UI.addAppToList(list));
   }
 
   static addAppToList(list) {
